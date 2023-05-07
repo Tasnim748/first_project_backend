@@ -5,7 +5,7 @@ const app = require('./app');
 dotenv.config();
 
 // mongo server connection
-const DB_URL = process.env.MONGODB_SERVER.replace('<password>', process.env.CLUSTER_PASSWORD);
+const DB_URL = process.env.MONGODB_LOCAL_SERVER;
 console.log(DB_URL);
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
