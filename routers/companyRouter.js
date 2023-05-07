@@ -3,8 +3,8 @@ const { Company } = require('../models/Company');
 const router = express.Router();
 
 const getCompanies = async (req, res) => {
-    if (req.params.id) {
-        const company = await Company.findById(req.params.id);
+    if (req.params.company) {
+        const company = await Company.findOne({title: req.params.company});
         return res.status(200).send(company);
     }
     const company = await Company.find({});
@@ -17,7 +17,7 @@ const newCompany = async (req, res) => {
     res.send('success');
 }
 
-router.route('/:id')
+router.route('/:company')
     .get(getCompanies)
 
 router.route('/')
