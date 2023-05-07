@@ -3,8 +3,8 @@ const { Image } = require('../models/Carousel_Img');
 const router = express.Router();
 
 const getImages = async (req, res) => {
-    if (req.params.id) {
-        const images = await Image.find({_id: req.params.id});
+    if (req.params.company) {
+        const images = await Image.find({company: req.params.company});
         return res.status(200).send(images);
     }
     const images = await Image.find({});
@@ -17,7 +17,7 @@ const newImage = async (req, res) => {
     res.send('success');
 }
 
-router.route('/:id')
+router.route('/:company')
     .get(getImages)
 
 router.route('/')
