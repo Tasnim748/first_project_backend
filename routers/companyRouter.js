@@ -3,8 +3,12 @@ const { Company } = require('../models/Company');
 const router = express.Router();
 
 const getCompanies = async (req, res) => {
-    const images = await Company.find({});
-    return res.send(images);
+    if (req.params.id) {
+        const company = await Company.findById(req.params.id);
+        return res.status(200).send(company);
+    }
+    const company = await Company.find({});
+    return res.status(200).send(company);
 }
 
 const newCompany = async (req, res) => {
@@ -12,6 +16,9 @@ const newCompany = async (req, res) => {
     await newImg.save();
     res.send('success');
 }
+
+router.route('/:id')
+    .get(getCompanies)
 
 router.route('/')
     .get(getCompanies)
