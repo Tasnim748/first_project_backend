@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 const imageRouter = require('./routers/imageRouter');
+const companyRouter = require('./routers/companyRouter');
 
 const app = express();
 // app config
@@ -24,6 +25,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/images/', imageRouter);
+app.use('/company/', companyRouter);
+
 
 app.post("/upload/", upload.single("image"), (req, res) => {
     if (req.file) {
