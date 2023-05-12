@@ -14,7 +14,19 @@ const getImages = async (req, res) => {
 const newImage = async (req, res) => {
     const newImg = new Image(req.body);
     await newImg.save();
-    res.send('success');
+    return res.status(201).send('success');
+}
+
+const deleteImage = async (req, res) => {
+    console.log(req.body._id);
+    try {
+        await Image.findByIdAndDelete(req.body._id);
+        console.log('deleted');
+        return res.status(204).send('deletion successful');
+    } catch(e) {
+        console.log('some wrong')
+        return res.send('deletion error!');
+    } 
 }
 
 router.route('/:company')
@@ -23,5 +35,6 @@ router.route('/:company')
 router.route('/')
     .get(getImages)
     .post(newImage)
+    .delete(deleteImage)
 
 module.exports = router;
