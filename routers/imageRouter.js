@@ -21,7 +21,7 @@ const deleteImage = async (req, res) => {
     console.log(req.body._id);
     try {
         await Image.findByIdAndDelete(req.body._id);
-        console.log('deleted');
+        console.log('deleted', req.body._id);
         return res.status(204).send('deletion successful');
     } catch(e) {
         console.log('some wrong')
