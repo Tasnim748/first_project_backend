@@ -2,13 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
 const multer = require('multer');
+const bodyParser = require('body-parser');
 
 const app = express();
 // app config
 app.use(compression());
 app.use(cors());
-app.use(express.json({ limit: '5mb' }));
-app.use(express.urlencoded({ limit: '5mb', extended: true }));
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
