@@ -3,6 +3,13 @@ const cors = require('cors');
 const compression = require('compression');
 const multer = require('multer');
 
+const app = express();
+// app config
+app.use(compression());
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/photos')
@@ -23,11 +30,6 @@ const upload = multer({
 const imageRouter = require('./routers/imageRouter');
 const companyRouter = require('./routers/companyRouter');
 
-const app = express();
-// app config
-app.use(compression());
-app.use(cors());
-app.use(express.json());
 
 app.use('/images/', imageRouter);
 app.use('/company/', companyRouter);
