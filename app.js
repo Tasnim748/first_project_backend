@@ -8,8 +8,8 @@ const app = express();
 // app config
 app.use(compression());
 app.use(cors());
-app.use(bodyParser.json({ limit: '5mb' }));
-app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
+app.use(bodyParser.json({ limit: '15mb' }));
+app.use(bodyParser.urlencoded({ limit: '15mb', extended: true }));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 5 * 1024 * 1024, // Maximum file size: 5MB
+        fileSize: 15 * 1024 * 1024, // Maximum file size: 5MB
     }
 });
 
