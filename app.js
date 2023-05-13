@@ -7,8 +7,8 @@ const app = express();
 // app config
 app.use(compression());
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ limit: '5mb', extended: true }));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
