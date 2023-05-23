@@ -45,7 +45,8 @@ const updateImage = async (req, res) => {
     await Image.findByIdAndUpdate(req.body._id, {
         title: req.body.title,
         description: req.body.description,
-        url: req.body.url
+        url: req.body.url,
+        projectType: req.body.projectType
     })
     return res.status(204).send('updated!');
 }

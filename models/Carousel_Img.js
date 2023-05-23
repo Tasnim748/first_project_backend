@@ -4,6 +4,7 @@ const ImageSchema = Schema({
     title: String,
     description: String,
     url: String,
+    projectType: String,
     company: String
 });
 
