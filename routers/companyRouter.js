@@ -4,7 +4,7 @@ const router = express.Router();
 
 const getCompanies = async (req, res) => {
     if (req.params.company) {
-        const company = await Company.findOne({title: req.params.company});
+        const company = await Company.find({title: req.params.company});
         return res.status(200).send(company);
     }
     const company = await Company.find({});
