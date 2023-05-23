@@ -5,6 +5,10 @@ const DeleteFile = require('./fileDelete');
 
 const getImages = async (req, res) => {
     if (req.params.company) {
+        if (req.params.projectype) {
+            const images = await Image.find({company: req.params.company, projectType: req.params.projectype})
+            return res.status(200).send(images)
+        }
         const images = await Image.find({company: req.params.company});
         return res.status(200).send(images);
     }
@@ -52,6 +56,9 @@ const updateImage = async (req, res) => {
 }
 
 router.route('/:company')
+    .get(getImages)
+
+router.route('/:company/:projectype')
     .get(getImages)
 
 router.route('/')
